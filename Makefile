@@ -1,6 +1,8 @@
 #!/usr/bin/env make
 
 # Change this to be your variant of the python command
+# Set the env variable PYTHON to another value if needed
+# PYTHON=python3 make version
 PYTHON ?= python # python3 py
 
 # Print out colored action message
@@ -10,13 +12,17 @@ all:
 
 
 # ---------------------------------------------------------
-# Setup a venv and install packages.
+# Check the current python executable.
 #
 version:
 	@printf "Currently using executable: $(PYTHON)\n"
 	which $(PYTHON)
 	$(PYTHON) --version
 
+
+# ---------------------------------------------------------
+# Setup a venv and install packages.
+#
 venv:
 	[ -d .venv ] || $(PYTHON) -m venv .venv
 	@printf "Now activate the Python virtual environment.\n"
