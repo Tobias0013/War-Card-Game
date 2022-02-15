@@ -37,9 +37,10 @@ installed:
 # Cleanup generated and installed files.
 #
 clean:
-	rm -f .coverage *.pyc
-	rm -rf __pycache__
+	rm -f .coverage
 	rm -rf htmlcov
+	rm -f *.pyc
+	rm -rf */__pycache__
 
 clean-doc:
 	rm -rf doc
@@ -53,7 +54,7 @@ clean-all: clean clean-doc
 #
 pylint:
 	@$(call MESSAGE,$@)
-	-pylint *.py
+	-cd guess && $(PYTHON) -m pylint *.py
 
 flake8:
 	@$(call MESSAGE,$@)
@@ -67,11 +68,11 @@ lint: flake8 pylint
 #
 unittest:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m unittest discover . "*_test.py"
+	 $(PYTHON) -m unittest discover test "*_test.py"
 
 coverage:
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover . "*_test.py"
+	coverage run -m unittest discover test "*_test.py"
 	coverage html
 	coverage report -m
 
