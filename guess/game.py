@@ -6,7 +6,7 @@
 import random
 
 
-class Game():
+class Game:
     """Example of dice class."""
 
     low_number = 1

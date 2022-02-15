@@ -86,6 +86,16 @@ test: lint coverage
 
 
 # ---------------------------------------------------------
+# Work with codestyle.
+#
+black:
+	@$(call MESSAGE,$@)
+	 $(PYTHON) -m black guess/ test/
+
+codestyle: black
+
+
+# ---------------------------------------------------------
 # Work with generating documentation.
 #
 .PHONY: pydoc

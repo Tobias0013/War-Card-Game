@@ -1,6 +1,8 @@
 Python development project template
 ==========================
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 A template for a Python development project.
 
 [[_TOC_]]
@@ -131,6 +133,19 @@ make clean-all
 
 
 
-### More targets
+Optional targets
+--------------------------
+
+You can unify the codestyle using [black](https://pypi.org/project/black/). Running black will change your source code to have a codestyle according to black codestyle.
+
+```
+# Same same, different names
+make black
+make codestyle
+```
+
+
+More targets
+--------------------------
 
 The Makefile contains more targets, they are however not yet tested on this directory structure.

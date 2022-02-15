@@ -26,5 +26,5 @@ class TestGameClass(unittest.TestCase):
         self.assertTrue(exp)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

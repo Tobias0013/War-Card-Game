@@ -15,8 +15,8 @@ import game
 class Shell(cmd.Cmd):
     """Example of class with command actions to roll a dice."""
 
-    intro = 'Welcome to the game. Type help or ? to list commands.\n'
-    prompt = '(game) '
+    intro = "Welcome to the game. Type help or ? to list commands.\n"
+    prompt = "(game) "
 
     def __init__(self):
         """Init the object."""
@@ -38,9 +38,7 @@ class Shell(cmd.Cmd):
 
     def do_guess(self, arg):
         """Do a guess of a number."""
-        msg = (
-            "Missing argument on the number you are guessing. Try 'guess 42'."
-        )
+        msg = "Missing argument on the number you are guessing. Try 'guess 42'."
         if not arg:
             print(msg)
             return
