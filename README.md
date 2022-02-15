@@ -28,6 +28,7 @@ make version
 If you have another naming of the Python executable then you can solve that using an environment variable. This is common on Mac and Linux.
 
 ```
+# Set the environment variable to be your python executable
 export PYTHON=python3
 make version
 ```
@@ -50,6 +51,8 @@ make venv
 # Activate on Linx/Mac
 . .venv/bin/activate
 ```
+
+When you are done you can leave the venv using the command `deactivate`.
 
 Read more on [Python venv](https://docs.python.org/3/library/venv.html).
 
@@ -78,6 +81,7 @@ Read more on [Python PIP](https://pypi.org/project/pip/).
 The example program can be started like this.
 
 ```
+# Execute the main program
 python guess/main.py
 ```
 
