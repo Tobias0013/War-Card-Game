@@ -32,6 +32,8 @@ export PYTHON=python3
 make version
 ```
 
+Read more on [GNU make](https://www.gnu.org/software/make/manual/make.html).
+
 
 
 ### Python virtual environment
@@ -49,6 +51,8 @@ make venv
 . .venv/bin/activate
 ```
 
+Read more on [Python venv](https://docs.python.org/3/library/venv.html).
+
 
 
 ### Install the dependencies
@@ -64,6 +68,8 @@ make install
 # Check what is installed
 make installed
 ```
+
+Read more on [Python PIP](https://pypi.org/project/pip/).
 
 
 
@@ -94,6 +100,11 @@ make lint
 
 You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
 
+Read more on:
+
+* [flake8](https://flake8.pycqa.org/en/latest/)
+* [pylint](https://pylint.org/)
+
 
 
 ### Run the unittests
@@ -117,6 +128,11 @@ You can open a web browser to inspect the code coverage as a generated HTML repo
 firefox htmlcov/index.html
 ```
 
+Read more on:
+
+* [unittest](https://docs.python.org/3/library/unittest.html)
+* [coverage](https://coverage.readthedocs.io/)
+
 
 
 ### Remove generated files
@@ -136,13 +152,22 @@ make clean-all
 Optional targets
 --------------------------
 
-You can unify the codestyle using [black](https://pypi.org/project/black/). Running black will change your source code to have a codestyle according to black codestyle.
+These targets might be helpful when running your project.
+
+
+
+### Codestyle with black
+
+You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
 
 ```
 # Same same, different names
 make black
 make codestyle
 ```
+
+Read more on [black](https://pypi.org/project/black/).
+
 
 
 More targets
