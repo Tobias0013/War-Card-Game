@@ -74,11 +74,11 @@ lint: flake8 pylint
 #
 unittest:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m unittest discover test "*_test.py"
+	 $(PYTHON) -m unittest discover test
 
 coverage:
 	@$(call MESSAGE,$@)
-	coverage run -m unittest discover test "*_test.py"
+	coverage run -m unittest discover test
 	coverage html
 	coverage report -m
 
