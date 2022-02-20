@@ -70,6 +70,16 @@ lint: flake8 pylint
 
 
 # ---------------------------------------------------------
+# Work with codestyle.
+#
+black:
+	@$(call MESSAGE,$@)
+	 $(PYTHON) -m black guess/ test/
+
+codestyle: black
+
+
+# ---------------------------------------------------------
 # Work with unit test and code coverage.
 #
 unittest:
@@ -83,16 +93,6 @@ coverage:
 	coverage report -m
 
 test: lint coverage
-
-
-# ---------------------------------------------------------
-# Work with codestyle.
-#
-black:
-	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black guess/ test/
-
-codestyle: black
 
 
 # ---------------------------------------------------------
