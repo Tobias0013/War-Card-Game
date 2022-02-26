@@ -43,15 +43,17 @@ installed:
 # Cleanup generated and installed files.
 #
 clean:
-	rm -f .coverage
+	@$(call MESSAGE,$@)
+	rm -f .coverage *.pyc
+	rm -rf __pycache__
 	rm -rf htmlcov
-	rm -f *.pyc
-	rm -rf */__pycache__
 
-clean-doc:
+clean-doc: clean
+	@$(call MESSAGE,$@)
 	rm -rf doc
 
 clean-all: clean clean-doc
+	@$(call MESSAGE,$@)
 	rm -rf .venv
 
 
@@ -100,23 +102,25 @@ test: lint coverage
 #
 .PHONY: pydoc
 pydoc:
+	@$(call MESSAGE,$@)
 	install -d doc/pydoc
-	$(PYTHON) -m pydoc -w "$(PWD)"
+	$(PYTHON) -m pydoc -w guess/*.py
 	mv *.html doc/pydoc
 
 pdoc:
-	rm -rf doc/pdoc
-	pdoc --html -o doc/pdoc .
-
-doc: pdoc pyreverse #pydoc sphinx
+	@$(call MESSAGE,$@)
+	pdoc --force --html --output-dir doc/pdoc guess/*.py
 
 pyreverse:
+	@$(call MESSAGE,$@)
 	install -d doc/pyreverse
-	pyreverse *.py
+	pyreverse guess/*.py
 	dot -Tpng classes.dot -o doc/pyreverse/classes.png
 	dot -Tpng packages.dot -o doc/pyreverse/packages.png
 	rm -f classes.dot packages.dot
-	ls -l doc/pyreverse
+
+doc: pdoc pyreverse #pydoc sphinx
+
 
 
 # ---------------------------------------------------------
