@@ -128,25 +128,31 @@ doc: pdoc pyreverse #pydoc sphinx
 #
 radon-cc:
 	@$(call MESSAGE,$@)
-	radon cc . -a
+	radon cc --show-complexity --average guess
 
 radon-mi:
 	@$(call MESSAGE,$@)
-	radon mi .
+	radon mi --show guess
 
 radon-raw:
 	@$(call MESSAGE,$@)
-	radon raw .
+	radon raw guess
 
 radon-hal:
 	@$(call MESSAGE,$@)
-	radon hal .
+	radon hal guess
 
-metrics: radon-cc radon-mi radon-raw radon-hal
+cohesion:
+	@$(call MESSAGE,$@)
+	cohesion --directory guess
+
+metrics: radon-cc radon-mi radon-raw radon-hal cohesion
+
 
 
 # ---------------------------------------------------------
 # Find security issues in your project.
 #
 bandit:
-	bandit -r .
+	@$(call MESSAGE,$@)
+	bandit --recursive guess
