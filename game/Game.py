@@ -21,7 +21,7 @@ class Game:
 
     def _load_high_score(self):
         with open(self._path, "rb") as file:
-            return pickle.load(file)
+            self.high_scores = pickle.load(file)
 
     def _save_high_score(self, high_scores):
         with open(self._path, "wb") as file:
