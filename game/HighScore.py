@@ -1,18 +1,9 @@
+from Player import Player
+
+
 class High_score:
-    def __init__(self, rounds, player1, player2, winner):
+    def __init__(self, rounds, player_winner, player_looser):
         self.rounds = rounds
-        self.player1 = player1
-        self.player2 = player2
-        self.winner = winner
-        self.path = ""  # chose path
+        self.player_winner = player_winner
+        self.player_looser = player_looser
 
-    def _compare_score(self):
-        return
-
-    @staticmethod
-    def save():
-        return
-
-    @staticmethod
-    def load():
-        return

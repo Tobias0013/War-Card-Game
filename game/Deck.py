@@ -5,10 +5,10 @@ import random
 class Deck:
     def __init__(self):
         self.cards = list()
-        self.generate_cards()
+        self._generate_cards()
         self._shuffle()
 
-    def generate_cards(self):
+    def _generate_cards(self):
         i = 0
         j = 0
 
