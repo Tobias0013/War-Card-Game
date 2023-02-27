@@ -1,21 +1,25 @@
-from queue import LifoQueue
 import Hand
+from Card import Card
 
 class Player:
     def __init__(self, name, cards, is_player):
         self.is_player = is_player
         self.name = name
-        self.current_cards = Hand.Hand(cards).hand
+        self.hand = cards
+        self.stack = []
 
-    def play_hand(self):
-        if self.current_cards.not_empty() == False:
-            print("The deck is empty")
-        else:
-            print(f'{self.name} plays >> {self.current_cards.get()}')
+    def play_card(self):
+        self.stack.append(self.hand.pop(0))
 
+    def add_stack(self, card):
+        for c in card:
+            self.hand.append(c)
+
+    def get_stack(self):
+        temp_stack = self.stack.copy()
+        self.stack.clear()
+        return temp_stack
+    
     def change_name(self):
         self.name = input('What is your new name? >> ')
-
-    def add_cards(self, cards):
-        while cards.not_empty():
-            self.current_cards.put(cards.pop())
+        

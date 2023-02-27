@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import IntEnum
 
 
-class Number(Enum):
+class Number(IntEnum):
     Spade = 13
     King = 12
     Queen = 11

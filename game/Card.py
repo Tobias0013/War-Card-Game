@@ -11,6 +11,9 @@ class Card:
         else:
             self.color = Color.Black
         self.suite = Sute(suite)
+        
+    def get_value(self):
+        return self.number.value + 1
 
     def __str__(self):
         return f"number={self.number.value},suite={self.suite},color={self.color}"

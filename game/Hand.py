@@ -1,16 +1,13 @@
-from queue import LifoQueue
-
 class Hand:
-    def __init__(self, cards):
-        self.hand = LifoQueue()
-        while cards.not_empty():
-            self.hand.put(cards.get())
+    def __init__(self, hand):
+        self.hand = hand
 
-    def next_card(self):
-        return self.hand.get()
-
-    def add_card(self, card):
-        self.hand.put(card)
+    def add_card(self, cards):
+        while len(cards) != 0:
+            self.hand.append(cards.pop())
+    
+    def get_next_card(self):
+        return self.hand.pop(0)
 
     def remove_card(self):
         self.hand.get()

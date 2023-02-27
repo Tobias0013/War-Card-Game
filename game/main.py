@@ -1,32 +1,22 @@
-import Game
-import Player
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
-def main():
-    game_obj = Game.Game()
+"""
+Lets play a game of "Guess my number".
 
-    choice = input('=== Welcome to the card game War! === \nPlease input the number of the desired mode'
-        '\n1) Versus Computer\n2) Versus Player\n>> ')
+I will be thinking af a number between 1 and 100.
+You shall try to guess the number.
 
-    while choice != 1 or choice != 2:
-        choice = input('Please input either 1 or 2 from the menu')
+I will let you know if your guess is lower or higher than
+the number that I am thinking of.
 
-    is_player = False
-    if choice == 1:
-        is_player = True
+You have 5 guesses. Then you loose.
 
-    name1 = input('Player 1, what is your name?\n>> ')
-    name2 = input('What is your opponents name?\n>> ')
-    hand1 = list()
-    hand2 = list()
-    game_obj.deck.give_hands(hand1, hand2)
-    game_obj.player1 = Player.Player(name1, hand1, 1)
-    game_obj.player2 = Player.Player(name2, hand2, is_player)
+"""
 
-    match = game_obj.start()
-    while match:
-        pass
+import shell
 
-    
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    print(__doc__)
+    shell.Shell().cmdloop()
