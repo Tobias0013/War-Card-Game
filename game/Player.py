@@ -2,14 +2,14 @@ from queue import LifoQueue
 import Hand
 
 class Player:
-    def __init__(self, name, cards):
-        obj = Hand.Hand(cards)
+    def __init__(self, name, cards, is_player):
+        self.is_player = is_player
         self.name = name
-        self.current_cards = obj.hand
+        self.current_cards = Hand.Hand(cards).hand
 
     def play_hand(self):
         if self.current_cards.not_empty() == False:
-            print("The deck is empty")              #Needed change: a signal that the player has lost
+            print("The deck is empty")
         else:
             print(f'{self.name} plays >> {self.current_cards.get()}')
 

@@ -14,10 +14,10 @@ class Game:
         self.player2 = None #player class
 
     def start(self):
-        return
+        return True
 
     def end(self):
-        return
+        return False
 
     def _load_high_score(self):
         with open(self._path, "rb") as file:
