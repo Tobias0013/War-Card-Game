@@ -22,13 +22,13 @@ class Shell(cmd.Cmd):
         """Init the object."""
         super().__init__()
         self.game = Game.Game()
-        
+
     def do_start(self, _):
         """Start the game."""
-        
+
         choice = input('=== Welcome to the card game War! === \nPlease input the number of the desired mode'
         '\n1) Versus Computer\n2) Versus Player\n>> ')
-        
+
         while True:
             if choice.isdigit():
                 choice = int(choice)
@@ -48,7 +48,7 @@ class Shell(cmd.Cmd):
         self.game.start(name1, name2, is_player)
         self.prompt = f"({self.game.player1.name}) "
 
-        
+
     def do_name_change(self):
         Player.Player().change_name()
 
@@ -71,11 +71,11 @@ class Shell(cmd.Cmd):
         if self.game.end():
             self.prompt = ">> "
 
-        
+
     def _check_cards(self):
         #if both stacks have card in them check witch is bigger than give both card to that player
         if len(self.game.player1.stack) > 0 and len(self.game.player2.stack) > 0:
-                
+
             #This checks if player1 card has higher value
             if self.game.player1.stack[-1].get_value() > self.game.player2.stack[-1].get_value():
                 print(f"Player1 has higher card")
@@ -106,7 +106,7 @@ class Shell(cmd.Cmd):
                 print(f"Player2 card: {self.game.player2.stack[-1].get_value()}")
                 print(f"Player1 hand len: {len(self.game.player1.hand)} Player2 hand len: {len(self.game.player2.hand)}")
                 self._check_cards()
-    
+
     def do_cheat(self, _):
         """Cheat."""
         # rigga en vinst åt spelare 1
