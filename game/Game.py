@@ -12,7 +12,7 @@ class Game:
         self.round_counter = int()
         self.deck = Deck()
 
-    def start(self, name1, name2, is_player ):
+    def start(self, name1, name2, is_player):
         hand1 = list()
         hand2 = list()
         self.deck.give_hands(hand1, hand2)
@@ -21,7 +21,7 @@ class Game:
 
     def end(self):
         # checks if player1 hand is empty
-        if len(self.player1.stack) != 0 or len(self.player2.stack) != 0:
+        if len(self.player1.hand) != 0 or len(self.player2.hand) != 0:
             return False
 
         if len(self.player1.hand) == 0:
@@ -33,6 +33,9 @@ class Game:
 
         #save high score osv.
         return True
+
+    def _create_high_score(self):
+        pass
 
     def _load_high_score(self):
         with open(self._path, "rb") as file:
