@@ -50,76 +50,36 @@ class Shell(cmd.Cmd):
 
 
     def do_name_change(self):
-        Player.Player().change_name()
+        Player.Player().change_name() #funkar inte
 
     def do_play(self, _):
         """"Player plays card from hand"""
         if self.prompt == f"({self.game.player1.name}) ":
             #tar ett kort från handen och lägger på bordet (player1)
             self.game.player1.play_card()
-            print(f"Card added to player1 stack>> {self.game.player1.stack[-1].get_value()}")
+            print(f"Card added to player1 stack>> {self.game.player1.get_card()}")
             self.prompt = f"({self.game.player2.name}) "
         else:
             #tar ett kort från handen och lägger på bordet (player2)
             self.game.player2.play_card()
-            print(f"Card added to player2 stack>> {self.game.player2.stack[-1].get_value()}")
+            print(f"Card added to player2 stack>> {self.game.player2.get_card()}")
             self.prompt = f"({self.game.player1.name}) "
 
-        self._check_cards()
-        self.game.round_counter += 1
+        self.game.compare_cards()
 
         if self.game.end():
             self.prompt = ">> "
 
-
-    def _check_cards(self):
-        #if both stacks have card in them check witch is bigger than give both card to that player
-        if len(self.game.player1.stack) > 0 and len(self.game.player2.stack) > 0:
-
-            #This checks if player1 card has higher value
-            if self.game.player1.stack[-1].get_value() > self.game.player2.stack[-1].get_value():
-                print(f"Player1 has higher card")
-                print(f"Player1 card: {self.game.player1.stack[-1].get_value()}")
-                print(f"Player2 card: {self.game.player2.stack[-1].get_value()}")
-                self.game.player1.add_stack(self.game.player1.get_stack())#give player1 stack to player1 hand
-                self.game.player1.add_stack(self.game.player2.get_stack())#give player2 stack to player1 hand
-                print(f"Player1 hand len: {len(self.game.player1.hand)} Player2 hand len: {len(self.game.player2.hand)}")
-
-            #This checks if player2 card has higher value    
-            elif self.game.player2.stack[-1].get_value() > self.game.player1.stack[-1].get_value():
-                print(f"Player2 has higher card")
-                print(f"Player1 card: {self.game.player1.stack[-1].get_value()}")
-                print(f"Player2 card: {self.game.player2.stack[-1].get_value()}")
-                self.game.player2.add_stack(self.game.player1.get_stack())#give player1 stack to player2 hand
-                self.game.player2.add_stack(self.game.player2.get_stack())#give player2 stack to player2 hand
-                print(f"Player1 hand len: {len(self.game.player1.hand)} Player2 hand len: {len(self.game.player2.hand)}")
-
-            #this hapends if both players card have same value
-            elif self.game.player1.stack[-1].get_value() == self.game.player2.stack[-1].get_value():
-                #plays 2 cards from each hand
-                self.game.player1.play_card()
-                self.game.player1.play_card()
-                self.game.player2.play_card()
-                self.game.player2.play_card()
-                print("both player have same value")
-                print(f"Player1 card: {self.game.player1.stack[-1].get_value()}")
-                print(f"Player2 card: {self.game.player2.stack[-1].get_value()}")
-                print(f"Player1 hand len: {len(self.game.player1.hand)} Player2 hand len: {len(self.game.player2.hand)}")
-                self._check_cards()
-
     def do_cheat(self, _):
-        """Cheat."""
-        # rigga en vinst åt spelare 1
-        # cleara stack och hand för båda spelare
-        self.game.player1.stack.clear()
-        self.game.player1.hand.clear()
-        self.game.player2.stack.clear()
-        self.game.player2.hand.clear()
-        # lägg till ett högt kort til spelare 1 hand
-        # lägg till lågt kort till spelare 2 hand
-        self.game.player1.hand.append(Card.Card(11, 0))
-        self.game.player2.hand.append(Card.Card(0, 0))
+        """Cheat, riggs game so that player 1 will win."""
+        self.game.cheat()
 
+    def do_high_score(self, _):
+        """Display high scores."""
+        high_scores = self.game.high_scores
+
+        for i, score in enumerate(high_scores):
+            print(f"{i+1}. {score}")
 
     def do_exit(self, _):
         # pylint: disable=no-self-use
