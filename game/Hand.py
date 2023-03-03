@@ -5,7 +5,7 @@ class Hand:
     def add_card(self, cards):
         while len(cards) != 0:
             self.hand.append(cards.pop())
-    
+
     def get_next_card(self):
         return self.hand.pop(0)
 

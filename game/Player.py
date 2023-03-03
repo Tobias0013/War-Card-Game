@@ -1,6 +1,7 @@
 import Hand
 from Card import Card
 
+
 class Player:
     def __init__(self, name, cards, is_player):
         self.is_player = is_player
@@ -20,11 +21,11 @@ class Player:
         temp_stack = self.stack.copy()
         self.stack.clear()
         return temp_stack
-    
+
     def stack_empty(self):
         """Checks if stack is empty."""
         return len(self.stack) == 0
-    
+
     def get_card(self):
         """Returns latest card added to stack."""
         if len(self.stack) == 0:
@@ -46,8 +47,8 @@ class Player:
 
     def change_name(self):
         """Changes name of player."""
-        self.name = input('What is your new name? >> ')
-    
+        self.name = input("What is your new name? >> ")
+
     def len_stack(self):
         """Retrunrs legth of stack."""
         return len(self.stack)

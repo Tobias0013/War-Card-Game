@@ -11,7 +11,7 @@ class Card:
         else:
             self.color = Color.Black
         self.suite = Sute(suite)
-        
+
     def get_value(self):
         return self.number.value + 1
 

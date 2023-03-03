@@ -26,41 +26,42 @@ class Shell(cmd.Cmd):
     def do_start(self, _):
         """Start the game."""
 
-        choice = input('=== Welcome to the card game War! === \nPlease input the number of the desired mode'
-        '\n1) Versus Computer\n2) Versus Player\n>> ')
+        choice = input(
+            "=== Welcome to the card game War! === \nPlease input the number of the desired mode"
+            "\n1) Versus Computer\n2) Versus Player\n>> "
+        )
 
         while True:
             if choice.isdigit():
                 choice = int(choice)
                 if choice == 1 or choice == 2:
                     break
-            choice = input('Please input either 1 or 2 from the menu')
+            choice = input("Please input either 1 or 2 from the menu")
 
         is_player = False
         if choice == 2:
             is_player = True
 
-        name1 = input('Player 1, what is your name?\n>> ')
+        name1 = input("Player 1, what is your name?\n>> ")
         if choice == 2:
-            name2 = input('Player 2, what is your name?\n>> ')
+            name2 = input("Player 2, what is your name?\n>> ")
         else:
             name2 = "Computer"
         self.game.start(name1, name2, is_player)
         self.prompt = f"({self.game.player1.name}) "
 
-
     def do_name_change(self):
-        Player.Player().change_name() #funkar inte
+        Player.Player().change_name()  # funkar inte
 
     def do_play(self, _):
-        """"Player plays card from hand"""
+        """ "Player plays card from hand"""
         if self.prompt == f"({self.game.player1.name}) ":
-            #tar ett kort från handen och lägger på bordet (player1)
+            # tar ett kort från handen och lägger på bordet (player1)
             self.game.player1.play_card()
             print(f"Card added to player1 stack>> {self.game.player1.get_card()}")
             self.prompt = f"({self.game.player2.name}) "
         else:
-            #tar ett kort från handen och lägger på bordet (player2)
+            # tar ett kort från handen och lägger på bordet (player2)
             self.game.player2.play_card()
             print(f"Card added to player2 stack>> {self.game.player2.get_card()}")
             self.prompt = f"({self.game.player1.name}) "
