@@ -5,3 +5,4 @@ htmlcov/
 *.pyc
 dice/doc
 war/doc
+war/highScore.bin
