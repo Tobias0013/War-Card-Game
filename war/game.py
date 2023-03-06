@@ -1,26 +1,36 @@
-from HighScore import High_score
-from Deck import Deck
+
+"""Game class."""
+
 import operator
 import pickle
-import Player
-import Card
+from war import high_score
+from war import deck
+from war import player
+from war import card
 
 
 class Game:
+    """Game class."""
     def __init__(self):
+        """Game constructor."""
         self._path = "highScore.bin"
-        self.high_scores = self.load_high_score()
         self.round_counter = int()
-        self.deck = Deck()
+        self.deck = deck.Deck()
+        self.high_scores = []
+        self.high_scores = self.load_high_score()
+        self.player1 = None
+        self.player2 = None
 
     def start(self, name1, name2, is_player):
-        hand1 = list()
-        hand2 = list()
+        """Game start."""
+        hand1 = []
+        hand2 = []
         self.deck.give_hands(hand1, hand2)
-        self.player1 = Player.Player(name1, hand1, True)
-        self.player2 = Player.Player(name2, hand2, is_player)
+        self.player1 = player.Player(name1, hand1, True)
+        self.player2 = player.Player(name2, hand2, is_player)
 
     def end(self):
+        """Game end."""
         end = False
 
         if self.player1.stack_empty() and self.player2.stack_empty():
@@ -38,16 +48,22 @@ class Game:
         return end
 
     def _create_high_score(self, player_winner, player_looser):
-        high_score = High_score(self.round_counter, player_winner, player_looser)
-        self.high_scores.append(high_score)
+        """Creates high score."""
+        high = high_score.High_score(self.round_counter, player_winner, player_looser)
+        self.high_scores.append(high)
         self._compare_high_scores()
         self._save_high_score()
 
     def load_high_score(self):
-        with open(self._path, "rb") as file:
-            return pickle.load(file)
+        """Load high scores."""
+        try:
+            with open(self._path, "rb") as file:
+                return pickle.load(file)
+        except:
+            return []
 
     def _save_high_score(self):
+        """Save high scores."""
         with open(self._path, "wb") as file:
             pickle.dump(self.high_scores, file)
 
@@ -59,11 +75,12 @@ class Game:
             del self.high_scores[5]
 
     def compare_cards(self):
+        """Compare cards."""
         # if both stacks have card in them check witch is bigger than give both card to that player
         if not self.player1.stack_empty() and not self.player2.stack_empty():
             # This checks if player1 card has higher value
             if self.player1.get_card() > self.player2.get_card():
-                print(f"Player1 has higher card")
+                print("Player1 has higher card")
                 print(f"Player1 card: {self.player1.get_card()}")
                 print(f"Player2 card: {self.player2.get_card()}")
                 self.player1.add_stack(self.player1.get_stack())
@@ -74,7 +91,7 @@ class Game:
                 self.round_counter += 1
             # This checks if player2 card has higher value
             elif self.player2.get_card() > self.player1.get_card():
-                print(f"Player2 has higher card")
+                print("Player2 has higher card")
                 print(f"Player1 card: {self.player1.get_card()}")
                 print(f"Player2 card: {self.player2.get_card()}")
                 self.player2.add_stack(self.player1.get_stack())
@@ -99,7 +116,7 @@ class Game:
                 self.compare_cards()
 
     def cheat(self):
-        """Cheat, riggs game so that player 1 will win."""
+        """Cheat, riggs war so that player 1 will win."""
         # rigga en vinst åt spelare 1
         # cleara stack och hand för båda spelare
         self.player1.clear_stack()
@@ -108,5 +125,5 @@ class Game:
         self.player2.clear_hand()
         # lägg till ett högt kort til spelare 1 hand
         # lägg till lågt kort till spelare 2 hand
-        self.player1.hand.append(Card.Card(11, 0))
-        self.player2.hand.append(Card.Card(0, 0))
+        self.player1.hand.append(card.Card(11, 0))
+        self.player2.hand.append(card.Card(0, 0))

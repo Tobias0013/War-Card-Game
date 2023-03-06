@@ -4,4 +4,4 @@ __pycache__
 htmlcov/
 *.pyc
 dice/doc
-game/doc
+war/doc

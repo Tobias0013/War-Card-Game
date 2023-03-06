@@ -4,7 +4,7 @@
 """Unit testing."""
 
 import unittest
-from game import game
+from war import game
 
 
 class TestGameClass(unittest.TestCase):
