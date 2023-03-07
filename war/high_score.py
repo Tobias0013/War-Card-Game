@@ -13,3 +13,10 @@ class High_score:
     def __str__(self):
         """High score to string."""
         return f"Rounds played: {self.rounds} //Winner: {self.player_winner.name} //Loser: {self.player_looser.name}"
+
+    def __eq__(self, other):
+        if isinstance(other, High_score):
+            return self.rounds == other.rounds and\
+                   self.player_winner.name == other.player_winner.name and\
+                   self.player_looser.name == other.player_looser.name
+        return False

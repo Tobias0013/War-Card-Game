@@ -64,6 +64,9 @@ class Game:
 
     def _save_high_score(self):
         """Save high scores."""
+        if self._path == "":
+            return
+
         with open(self._path, "wb") as file:
             pickle.dump(self.high_scores, file)
 
@@ -117,13 +120,9 @@ class Game:
 
     def cheat(self):
         """Cheat, riggs war so that player 1 will win."""
-        # rigga en vinst åt spelare 1
-        # cleara stack och hand för båda spelare
         self.player1.clear_stack()
         self.player1.clear_hand()
         self.player2.clear_stack()
         self.player2.clear_hand()
-        # lägg till ett högt kort til spelare 1 hand
-        # lägg till lågt kort till spelare 2 hand
-        self.player1.hand.append(card.Card(11, 0))
-        self.player2.hand.append(card.Card(0, 0))
+        self.player1.hand.append(card.Card(14, 0))
+        self.player2.hand.append(card.Card(2, 0))

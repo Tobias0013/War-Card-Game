@@ -8,7 +8,6 @@ from war import deck
 from war import card
 
 
-
 class TestGameClass(unittest.TestCase):
     """Test the class."""
 
@@ -21,11 +20,12 @@ class TestGameClass(unittest.TestCase):
     def test_generate_cards(self):
         """Test if length of cards is correct."""
         a_deck = deck.Deck()
+        a_deck.cards.clear()
         a_deck._generate_cards()
 
         res = len(a_deck.cards) == 52
         self.assertTrue(res)
-        self.assertTrue(isinstance(self.a_deck.cards[0], card.Card))
+        self.assertTrue(isinstance(a_deck.cards[0], card.Card))
 
     def test_give_hands(self):
         """Test if give hand gives equal hands."""
