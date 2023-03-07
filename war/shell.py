@@ -48,7 +48,11 @@ class Shell(cmd.Cmd):
 
     def do_name_change(self):
         """Change player name."""
-        pass
+        if self.prompt == f"({self.game.player1.name}) ":
+            self.game.player1.change_name()
+        if self.prompt == f"({self.game.player2.name}) ":
+            self.game.player2.change_name()
+
 
     def do_play(self, _):
         """"Player plays card from hand"""
