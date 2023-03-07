@@ -24,14 +24,21 @@ class TestGameClass(unittest.TestCase):
     def test_start(self):
         """Test start game."""
         the_game = game.Game()
-        the_game.start("player1", "player2", False)
+        the_game.start("Karl", "Markus", True)
+
+        self.assertIsNotNone(the_game.player1)
+        self.assertIsNotNone(the_game.player2)
 
         self.assertIsInstance(the_game.player1, player.Player)
         self.assertIsInstance(the_game.player2, player.Player)
+
         res = len(the_game.player1.hand) == 26
         self.assertTrue(res)
         res = len(the_game.player2.hand) == 26
         self.assertTrue(res)
+
+        self.assertIsInstance(the_game.player1.hand[0], card.Card)
+        self.assertIsInstance(the_game.player2.hand[0], card.Card)
 
     def test_compare_cards(self):
         """Test compare cards."""
@@ -140,14 +147,19 @@ class TestGameClass(unittest.TestCase):
         """Test end game."""
         the_game = game.Game()
         the_game._path = ""
-        the_game.player1 = player.Player("player1", [], True)
-        the_game.player2 = player.Player("player2", [], True)
-        the_game.player2.hand.append(card.Card(2, 0))
-        self.assertTrue(the_game.end())
+        the_game.start("Karl", "Markus", True)
 
-        the_game.player1.hand.append(card.Card(2, 0))
         self.assertFalse(the_game.end())
 
+        the_game.player1.clear_hand()
+        self.assertTrue(the_game.end())
+
+        the_game.start("Karl", "Markus", True)
+        the_game.player2.clear_hand()
+        self.assertTrue(the_game.end())
+
+        the_game.start("Karl", "Markus", True)
+        the_game.player1.clear_hand()
         the_game.player2.clear_hand()
         self.assertTrue(the_game.end())
 
