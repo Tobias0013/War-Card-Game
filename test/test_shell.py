@@ -7,8 +7,6 @@ import unittest
 from unittest import mock
 from war import shell
 from war import game
-from war import card
-from war import deck
 from war import player
 
 
