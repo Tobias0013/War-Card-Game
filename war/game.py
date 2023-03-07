@@ -126,4 +126,4 @@ class Game:
         # lägg till ett högt kort til spelare 1 hand
         # lägg till lågt kort till spelare 2 hand
         self.player1.hand.append(card.Card(11, 0))
-        self.player2.hand.append(card.Card(0, 0))
+        self.player2.hand.append(card.Card(3, 0))
