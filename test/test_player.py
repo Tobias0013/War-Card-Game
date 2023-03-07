@@ -4,6 +4,7 @@
 """Unit testing."""
 
 import unittest
+from unittest import mock
 from war import player
 
 class TestGameClass(unittest.TestCase):
@@ -31,5 +32,12 @@ class TestGameClass(unittest.TestCase):
 
         self.assertEqual(ref[0].hand_empty(), ref[0].stack_empty())
 
-    def test_change_name():
-        pass
+    @mock.patch("builtins.input", create=True)
+    def test_change_name(self, mocked_input):
+        """Test change name functionality"""
+        mocked_input.side_effect = ["Bertil"]
+        ref = player.Player("Roger", [], True)
+        
+        ref.change_name()
+        self.assertEqual(ref.name, "Bertil")
+
