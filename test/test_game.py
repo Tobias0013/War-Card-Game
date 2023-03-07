@@ -45,6 +45,7 @@ class TestGameClass(unittest.TestCase):
         the_game = game.Game()
         the_game.start("player1", "player2", False)
 
+        # Player 2 win
         the_game.player1.clear_hand()
         the_game.player2.clear_hand()
         the_game.player1.stack.append(card.Card(2, 0))
@@ -56,6 +57,7 @@ class TestGameClass(unittest.TestCase):
         res = the_game.player2.len_hand() == 2 and the_game.player1.hand_empty()
         self.assertTrue(res)
 
+        # Player 1 win
         the_game.player1.clear_hand()
         the_game.player2.clear_hand()
         the_game.player1.stack.append(card.Card(14, 0))
@@ -65,6 +67,27 @@ class TestGameClass(unittest.TestCase):
 
         the_game.compare_cards()
         res = the_game.player2.hand_empty() and the_game.player1.len_hand() == 2
+        self.assertTrue(res)
+
+        # Player same vale then player 1 win
+        the_game.player1.clear_hand()
+        the_game.player2.clear_hand()
+
+        the_game.player1.stack.append(card.Card(8, 0))
+        the_game.player1.hand.append(card.Card(10, 0))
+        the_game.player1.hand.append(card.Card(14, 0))
+
+        the_game.player2.stack.append(card.Card(8, 0))
+        the_game.player2.hand.append(card.Card(7, 0))
+        the_game.player2.hand.append(card.Card(2, 0))
+
+        res = the_game.player1.len_stack() == 1 and the_game.player2.len_stack() == 1
+        self.assertTrue(res)
+        res = the_game.player1.len_hand() == 2 and the_game.player2.len_hand() == 2
+        self.assertTrue(res)
+
+        the_game.compare_cards()
+        res = the_game.player2.hand_empty() and the_game.player1.len_hand() == 6
         self.assertTrue(res)
 
     def test_save_high_score(self):

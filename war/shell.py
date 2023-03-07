@@ -1,12 +1,12 @@
 """
 Using the cmd module to create a shell for the main program.
-
 You can read about the cmd module in the docs:
     cmd — support for line-oriented command interpreters
     https://docs.python.org/3/library/cmd.html
 """
 
 import cmd
+from time import sleep
 from war import game
 
 
@@ -46,13 +46,15 @@ class Shell(cmd.Cmd):
         self.game.start(name1, name2, is_player)
         self.prompt = f"({self.game.player1.name}) "
 
-    def do_name_change(self):
+    def do_name_change(self, _):
         """Change player name."""
         if self.prompt == f"({self.game.player1.name}) ":
             self.game.player1.change_name()
-        if self.prompt == f"({self.game.player2.name}) ":
+            self.prompt = f"({self.game.player1.name}) "
+            
+        elif self.prompt == f"({self.game.player2.name}) ":
             self.game.player2.change_name()
-
+            self.prompt = f"({self.game.player2.name}) "
 
     def do_play(self, _):
         """"Player plays card from hand"""
@@ -61,6 +63,9 @@ class Shell(cmd.Cmd):
             self.game.player1.play_card()
             print(f"Card added to player1 stack>> {self.game.player1.get_card()}")
             self.prompt = f"({self.game.player2.name}) "
+            if not self.game.player2.is_player:
+                sleep(1)
+                self.do_play("")
         else:
             # tar ett kort från handen och lägger på bordet (player2)
             self.game.player2.play_card()

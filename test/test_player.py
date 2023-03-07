@@ -30,3 +30,6 @@ class TestGameClass(unittest.TestCase):
         ref[0].clear_stack()
 
         self.assertEqual(ref[0].hand_empty(), ref[0].stack_empty())
+
+    def test_change_name():
+        pass

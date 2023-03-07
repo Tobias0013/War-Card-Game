@@ -24,46 +24,41 @@ class TestGameClass(unittest.TestCase):
     @mock.patch("builtins.input", create=True)
     def test_start(self, mocked_input):
         """Test to start the war."""
-        mocked_input.side_effect = ["1", "test"]
+        mocked_input.side_effect = ["1", "Roger"]
 
         shel = shell.Shell()
-        shel.do_start()
-        self.assertIsInstance(shel.game, game.Game)
+        shel.do_start("")
+
         self.assertIsInstance(shel.game.player1, player.Player)
         self.assertIsInstance(shel.game.player2, player.Player)
+        self.assertFalse(shel.game.player2.is_player)
 
-    def test_prompt(self):
-        """Test prompt changes correct."""
+        mocked_input.side_effect = ["2", "Roger", "Malin"]
+        shel.do_start("")
+        self.assertTrue(shel.game.player2.is_player)
+
+        self.assertEqual(shel.prompt, f"({shel.game.player1.name}) ")
+
+    @mock.patch("builtins.input", create=True)
+    def test_play(self, mocked_input):
+        """Test play a card."""
+        mocked_input.side_effect = ["2", "Roger", "Malin"]
+        
         shel = shell.Shell()
-        res = shel.prompt
-        exp = ">> "
-        self.assertEqual(res, exp)
-
-        shel.do_start()
-        res = shel.prompt
-        exp = ">> "
-        self.assertEqual(res, exp)
-
-        shel.do_play()
-
-    def test_play(self):
-        """Test when player1 and player2 plays there turns."""
-        shel = shell.Shell()
-        shel.do_start()
-        shel.do_play()
-
-        res = shel.game.player1.get_card() is not None
+        shel.do_start("")
+        
+        shel.do_play("")
+        self.assertTrue(shel.game.player1.len_stack() == 1)
+        res = shel.prompt == f"({shel.game.player2.name}) "
         self.assertTrue(res)
-        shel.do_play()
-
-        res = shel.game.player2.get_card() is not None
+        shel.game.player1.clear_stack()
+                
+        shel.do_play("")
+        self.assertTrue(shel.game.player2.len_stack() == 1)
+        res = shel.prompt == f"({shel.game.player1.name}) "
         self.assertTrue(res)
-
-    def test_cheat(self):
-        self.shell.do_start()
-        self.shell.do_cheat()
-        self.assertEqual(self.shell.Game.winner, self.shell.Game.player1)
-
-
+        
+        
 if __name__ == "__main__":
     unittest.main()
+    
