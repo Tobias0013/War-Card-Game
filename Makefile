@@ -114,15 +114,15 @@ pdoc:
 
 pyreverse:
 	@$(call MESSAGE,$@)
-	install -d doc/pyreverse
+	install -d doc/pyreverse/war
 	pyreverse war/*.py
-	dot -Tpng classes.dot -o doc/war/pyreverse/classes.png
-	dot -Tpng packages.dot -o doc/war/pyreverse/packages.png
+	dot -Tpng classes.dot -o doc/pyreverse/war/classes.png
+	dot -Tpng packages.dot -o doc/pyreverse/war/packages.png
 	rm -f classes.dot packages.dot
-
+	install -d doc/pyreverse/test
 	pyreverse test/*.py
-	dot -Tpng classes.dot -o doc/test/pyreverse/classes.png
-	dot -Tpng packages.dot -o doc/test/pyreverse/packages.png
+	dot -Tpng classes.dot -o doc/pyreverse/test/classes.png
+	dot -Tpng packages.dot -o doc/pyreverse/test/packages.png
 	rm -f classes.dot packages.dot
 
 doc: pdoc pyreverse #pydoc sphinx
