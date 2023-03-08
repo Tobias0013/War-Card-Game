@@ -1,6 +1,3 @@
-
-"""Enum for card number."""
-
 from enum import IntEnum
 
 

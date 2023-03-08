@@ -1,7 +1,3 @@
-
-"""Player class."""
-
-
 class Player:
     """Player class."""
     def __init__(self, name, cards, is_player):
@@ -12,33 +8,33 @@ class Player:
         self.stack = []
 
     def play_card(self):
-        """Play card."""
+        """Pop a card from hand and add to stack."""
         self.stack.append(self.hand.pop(0))
 
     def add_stack(self, card):
-        """Add stack."""
+        """Add argument to stack."""
         for c in card:
             self.hand.append(c)
 
     def get_stack(self):
-        """Returns stack and clears it."""
+        """Return stack and clears it."""
         temp_stack = self.stack.copy()
         self.stack.clear()
         return temp_stack
 
     def stack_empty(self):
-        """Checks if stack is empty."""
+        """Return true if stack is empty."""
         return len(self.stack) == 0
 
     def get_card(self):
-        """Returns value of latest card added to stack."""
+        """Return value of latest card added to stack."""
         if len(self.stack) == 0:
             return None
 
         return self.stack[-1].get_value()
 
     def hand_empty(self):
-        """Checks if hand is empty."""
+        """Return true if hand is empty."""
         return len(self.hand) == 0
 
     def clear_stack(self):
@@ -54,9 +50,9 @@ class Player:
         self.name = input("What is your new name? >> ")
 
     def len_stack(self):
-        """Retrunrs legth of stack."""
+        """Return length of stack."""
         return len(self.stack)
 
     def len_hand(self):
-        """Retrunrs legth of hand."""
+        """Return length of hand."""
         return len(self.hand)

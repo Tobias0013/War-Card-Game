@@ -1,8 +1,32 @@
-"""
-Using the cmd module to create a shell for the main program.
-You can read about the cmd module in the docs:
-    cmd — support for line-oriented command interpreters
-    https://docs.python.org/3/library/cmd.html
+""" This is our Shell class, looping the game along with game logic
+
+Start by implementing modules needed
+
+    class Shell(cmd.Cmd)
+
+The class has two class variables.
+intro - Is printed when the shell starts
+prompt - Is the prompt used for inputs
+
+        intro = "Type help or ? to list commands."
+        prompt = ">> "
+
+User inputs 1 to play against computer, then enters his/her name.
+If against another player, then enter his/her name and a name for opponent.
+Then start the game.
+
+        def do_start(self, _):
+
+If it is player1's turn. Then play one of ther card to stack.
+    If player2 is not a player then run do_play again automaticly.
+Else player2's turn. Then play one of ther card to stack.
+
+Then run self.game.compare_cards()
+
+If self.game.end() is true then change prompt to ">> "
+
+        def do_start(self, _):
+
 """
 
 import cmd
@@ -11,9 +35,9 @@ from war import game
 
 
 class Shell(cmd.Cmd):
-    """Shell class to handle input and war logic"""
+    """Shell class to handle input, output and some game logic."""
 
-    intro = "Welcome to the war. Type help or ? to list commands.\n"
+    intro = "Type help or ? to list commands.\n"
     prompt = ">> "
 
     def __init__(self):
@@ -22,9 +46,9 @@ class Shell(cmd.Cmd):
         self.game = game.Game()
 
     def do_start(self, _):
-        """Start the war."""
+        """Start a game."""
 
-        choice = input('=== Welcome to the card war War! === \nPlease input the number of the desired mode'
+        choice = input('Please input the number of the desired mode'
                        '\n1) Versus Computer\n2) Versus Player\n>> ')
 
         while True:
@@ -47,27 +71,34 @@ class Shell(cmd.Cmd):
         self.prompt = f"({self.game.player1.name}) "
 
     def do_name_change(self, _):
-        """Change player name."""
+        """Changes current player name."""
+        if self.prompt == ">> ":
+            print("The game has not yet started.\nInput start to start game.")
+            return
+
         if self.prompt == f"({self.game.player1.name}) ":
             self.game.player1.change_name()
             self.prompt = f"({self.game.player1.name}) "
-            
+
         elif self.prompt == f"({self.game.player2.name}) ":
             self.game.player2.change_name()
             self.prompt = f"({self.game.player2.name}) "
 
     def do_play(self, _):
-        """"Player plays card from hand"""
+        """Player plays card from hand, start war if both player played a card."""
+        if self.prompt == ">> ":
+            print("The game has not yet started.\nInput start to start game.")
+            return
+
         if self.prompt == f"({self.game.player1.name}) ":
-            # tar ett kort från handen och lägger på bordet (player1)
             self.game.player1.play_card()
             print(f"Card added to player1 stack>> {self.game.player1.get_card()}")
             self.prompt = f"({self.game.player2.name}) "
+            
             if not self.game.player2.is_player:
                 sleep(1)
                 self.do_play("")
         else:
-            # tar ett kort från handen och lägger på bordet (player2)
             self.game.player2.play_card()
             print(f"Card added to player2 stack>> {self.game.player2.get_card()}")
             self.prompt = f"({self.game.player1.name}) "
@@ -89,18 +120,20 @@ class Shell(cmd.Cmd):
             print(f"{i + 1}. {score}")
 
     def do_exit(self, _):
+        # pylint: disable=invalid-name
         """Leave the war."""
         print("Bye bye - see ya soon again")
         return True
 
-    def do_quit(self, arg):
+    def do_quit(self, _):
         """Leave the war."""
-        return self.do_exit(arg)
+        return self.do_exit(_)
 
-    def do_q(self, arg):
+    def do_q(self, _):
         """Leave the war."""
-        return self.do_exit(arg)
+        return self.do_exit(_)
 
-    def do_EOF(self, arg):
+    def do_EOF(self, _):
+        # pylint: disable=invalid-name
         """Leave the war."""
-        return self.do_exit(arg)
+        return self.do_exit(_)

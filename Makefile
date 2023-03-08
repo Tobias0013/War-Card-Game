@@ -109,14 +109,20 @@ pydoc:
 
 pdoc:
 	@$(call MESSAGE,$@)
-	pdoc --force --html --output-dir doc/pdoc guess/*.py
+	pdoc --force --html --output-dir doc/pdoc test/.
+	pdoc --force --html --output-dir doc/pdoc war/.
 
 pyreverse:
 	@$(call MESSAGE,$@)
 	install -d doc/pyreverse
-	pyreverse guess/*.py
-	dot -Tpng classes.dot -o doc/pyreverse/classes.png
-	dot -Tpng packages.dot -o doc/pyreverse/packages.png
+	pyreverse war/*.py
+	dot -Tpng classes.dot -o doc/war/pyreverse/classes.png
+	dot -Tpng packages.dot -o doc/war/pyreverse/packages.png
+	rm -f classes.dot packages.dot
+
+	pyreverse test/*.py
+	dot -Tpng classes.dot -o doc/test/pyreverse/classes.png
+	dot -Tpng packages.dot -o doc/test/pyreverse/packages.png
 	rm -f classes.dot packages.dot
 
 doc: pdoc pyreverse #pydoc sphinx

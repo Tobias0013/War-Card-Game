@@ -1,6 +1,3 @@
-
-"""Enum for card sute."""
-
 from enum import Enum
 
 

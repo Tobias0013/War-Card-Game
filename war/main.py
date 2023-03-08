@@ -2,15 +2,17 @@
 # -*- coding: utf-8 -*-
 
 """
-Lets play a war of "Guess my number".
+=== Welcome to the card War! ===
 
-I will be thinking af a number between 1 and 100.
-You shall try to guess the number.
+You will face an AI (or another player) in a battle
+of who can win the others cards first. The players will play a card and 
+the one with the highest card value, wins the cards
 
-I will let you know if your guess is lower or higher than
-the number that I am thinking of.
+The game will end when one of the players has an empty hand.
 
-You have 5 guesses. Then you loose.
+--- Skriv spelregler ---
+
+Type in 'start' to begin a game. Good luck!
 
 """
 import sys
@@ -18,5 +20,6 @@ import sys
 from war import shell
 
 if __name__ == "__main__":
+    """Displays doc string above and starts the shell loop."""
     print(__doc__)
     shell.Shell().cmdloop()

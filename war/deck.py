@@ -1,6 +1,3 @@
-
-"""Deck class."""
-
 import random
 from war import card
 
@@ -14,7 +11,7 @@ class Deck:
         random.shuffle(self.cards)
 
     def _generate_cards(self):
-        """Generates card."""
+        """Generates 52 card."""
         i = 2
         j = 0
 
@@ -26,6 +23,7 @@ class Deck:
             i += 1
 
     def give_hands(self, hand1, hand2):
+        """Give 26 cards to each argument (hand1=list, hand2=list)."""
         for i, card in enumerate(self.cards):
             if i % 2 == 0:
                 hand1.append(card)

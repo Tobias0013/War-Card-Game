@@ -1,6 +1,3 @@
-
-"""Enum for card color."""
-
 from enum import Enum
 
 

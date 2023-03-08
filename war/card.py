@@ -1,6 +1,3 @@
-
-"""Card class."""
-
 from war.enumNumber import number
 from war.enumColor import Color
 from war.enumSute import Sute
@@ -18,9 +15,9 @@ class Card:
         self.suite = Sute(suite)
 
     def get_value(self):
-        """Gets the cards value(number on the card)."""
+        """Gets the card value."""
         return self.number.value
 
     def __str__(self):
-        """To string method."""
+        """Return card as string."""
         return f"number={self.number.value},suite={self.suite},color={self.color}"
