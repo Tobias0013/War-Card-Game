@@ -57,7 +57,7 @@ class Shell(cmd.Cmd):
                 choice = int(choice)
                 if choice in (1, 2):
                     break
-            choice = input("Please input either 1 or 2 from the menu")
+            choice = input("Please input either 1 or 2 from the menu: ")
 
         is_player = False
         if choice == 2:
