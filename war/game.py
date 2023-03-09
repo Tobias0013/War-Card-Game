@@ -35,7 +35,7 @@ class Game:
 
     def __init__(self):
         """Game constructor."""
-        self._path = "highScore.bin"
+        self._path = "war/highScore.bin"
         self.round_counter = int()
         self.deck = deck.Deck()
         self.high_scores = []
