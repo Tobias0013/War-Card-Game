@@ -54,11 +54,11 @@ class Game:
 
         if self.player1.stack_empty() and self.player2.stack_empty():
             if self.player1.hand_empty():
-                print("player 2 won")
+                print(f"{self.player2.name} won")
                 end = True
                 self._create_high_score(self.player2, self.player1)
             elif self.player2.hand_empty():
-                print("player 1 won")
+                print(f"{self.player1.name} won")
                 end = True
                 self._create_high_score(self.player1, self.player2)
 
@@ -103,24 +103,22 @@ class Game:
         """Compare cards, and give cards to player with highest card value."""
         if not self.player1.stack_empty() and not self.player2.stack_empty():
             if self.player1.get_card() > self.player2.get_card():
-                print("Player1 has higher card")
-                print(f"Player1 card: {self.player1.get_card()}")
-                print(f"Player2 card: {self.player2.get_card()}")
+                print(f"{self.player1.name} has higher card")
+                print(f"{self.player1.name} card: {self.player1.get_card()}")
+                print(f"{self.player2.name} card: {self.player2.get_card()}")
                 self.player1.add_stack(self.player1.get_stack())
                 self.player1.add_stack(self.player2.get_stack())
-                print(
-                    f"Player1 hand len: {self.player1.len_hand()} Player2 hand len: {self.player2.len_hand()}"
-                )
+                print(f"{self.player1.name} has {self.player1.len_hand()} cards left in their hand")
+                print(f"{self.player2.name} has {self.player2.len_hand()} cards left in their hand")
                 self.round_counter += 1
             elif self.player2.get_card() > self.player1.get_card():
-                print("Player2 has higher card")
-                print(f"Player1 card: {self.player1.get_card()}")
-                print(f"Player2 card: {self.player2.get_card()}")
+                print(f"{self.player2.name} has higher card")
+                print(f"{self.player1.name} card: {self.player1.get_card()}")
+                print(f"{self.player2.name} card: {self.player2.get_card()}")
                 self.player2.add_stack(self.player1.get_stack())
                 self.player2.add_stack(self.player2.get_stack())
-                print(
-                    f"Player1 hand len: {self.player1.len_hand()} Player2 hand len: {self.player2.len_hand()}"
-                )
+                print(f"{self.player1.name} has {self.player1.len_hand()} cards left in ther hand")
+                print(f"{self.player2.name} has {self.player2.len_hand()} cards left in ther hand")
                 self.round_counter += 1
             else:
                 self.player1.play_card()
@@ -128,11 +126,10 @@ class Game:
                 self.player2.play_card()
                 self.player2.play_card()
                 print("Both players have same value")
-                print(f"Player1 card: {self.player1.get_card()}")
-                print(f"Player2 card: {self.player2.get_card()}")
-                print(
-                    f"Player1 hand len: {self.player1.len_hand()} Player2 hand len: {self.player2.len_hand()}"
-                )
+                print(f"{self.player1.name} card: {self.player1.get_card()}")
+                print(f"{self.player2.name} card: {self.player2.get_card()}")
+                print(f"{self.player1.name} has {self.player1.len_hand()} cards left in ther hand")
+                print(f"{self.player2.name} has {self.player2.len_hand()} cards left in ther hand")
                 self.compare_cards()
 
     def cheat(self):

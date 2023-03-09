@@ -92,15 +92,15 @@ class Shell(cmd.Cmd):
 
         if self.prompt == f"({self.game.player1.name}) ":
             self.game.player1.play_card()
-            print(f"Card added to player1 stack>> {self.game.player1.get_card()}")
+            print(f"Card added to {self.game.player1.name} floorloor>> {self.game.player1.get_card()}")
             self.prompt = f"({self.game.player2.name}) "
-            
+
             if not self.game.player2.is_player:
                 sleep(1)
                 self.do_play("")
         else:
             self.game.player2.play_card()
-            print(f"Card added to player2 stack>> {self.game.player2.get_card()}")
+            print(f"Card added to {self.game.player2.name} flouir>> {self.game.player2.get_card()}")
             self.prompt = f"({self.game.player1.name}) "
 
         self.game.compare_cards()

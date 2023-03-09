@@ -1,11 +1,9 @@
-Python development project template
+Group 28. Cmd war card game.
 ==========================
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-A template for a Python development project.
-
-[[_TOC_]]
+Group 28. Cmd war card game.
 
 
 
@@ -18,7 +16,7 @@ This is how you can work with the development environment.
 
 ### Check version of Python
 
-Check what version of Python you have. The Makefile uses `PYTHON=python` as default.
+Check what version of Python you have. The program is developed on version 3.10.0.
 
 ```
 # Check you Python installation
@@ -32,9 +30,6 @@ If you have another naming of the Python executable then you can solve that usin
 export PYTHON=python3
 make version
 ```
-
-Read more on [GNU make](https://www.gnu.org/software/make/manual/make.html).
-
 
 
 ### Python virtual environment
@@ -54,9 +49,6 @@ make venv
 
 When you are done you can leave the venv using the command `deactivate`.
 
-Read more on [Python venv](https://docs.python.org/3/library/venv.html).
-
-
 
 ### Install the dependencies
 
@@ -72,15 +64,14 @@ make install
 make installed
 ```
 
-Read more on [Python PIP](https://pypi.org/project/pip/).
-
 
 
 ### Run the code
 
-The example program can be started like this.
+The game can be started like this.
 
 ```
+# In directory War-
 # Execute the main program
 python guess/main.py
 ```

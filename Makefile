@@ -162,3 +162,12 @@ metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 bandit:
 	@$(call MESSAGE,$@)
 	bandit --recursive guess
+
+
+# ---------------------------------------------------------
+# Start game.
+#
+start_game:
+	@$(call MESSAGE,$@)
+	$(PYTHON) war/main.py
+
