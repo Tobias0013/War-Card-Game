@@ -69,6 +69,7 @@ class Shell(cmd.Cmd):
         else:
             name2 = "Computer"
         self.game.start(name1, name2, is_player)
+        self.game.round_counter = 0
         self.prompt = f"({self.game.player1.name}) "
 
     def do_name_change(self, _):
@@ -95,7 +96,7 @@ class Shell(cmd.Cmd):
         if self.prompt == f"({self.game.player1.name}) ":
             self.game.player1.play_card()
             print(
-                f"Card added to {self.game.player1.name}'s "+\
+                f"Card added to {self.game.player1.name}'s " +
                 f"floor>> {self.game.player1.get_card()}"
             )
             self.prompt = f"({self.game.player2.name}) "
@@ -103,10 +104,11 @@ class Shell(cmd.Cmd):
             if not self.game.player2.is_player:
                 sleep(1)
                 self.do_play("")
+                return
         else:
             self.game.player2.play_card()
             print(
-                f"Card added to {self.game.player2.name}'s "+\
+                f"Card added to {self.game.player2.name}'s " +
                 f"floor>> {self.game.player2.get_card()}"
             )
             self.prompt = f"({self.game.player1.name}) "
@@ -129,6 +131,10 @@ class Shell(cmd.Cmd):
     def do_high_score(self, _):
         """Display high scores."""
         high_scores = self.game.high_scores
+
+        if not high_scores:
+            print("There is no high scores")
+            return
 
         for i, score in enumerate(high_scores):
             print(f"{i + 1}. {score}")

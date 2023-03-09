@@ -23,5 +23,5 @@ class Card:
 
     def __str__(self):
         """Return card as string."""
-        return f"number={self.number.value},"+ \
+        return f"number={self.number.value}," + \
             f"suite={self.suite},color={self.color}"

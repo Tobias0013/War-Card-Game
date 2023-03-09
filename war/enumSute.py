@@ -1,4 +1,4 @@
-"""Enumsute file."""
+"""EnumSute file."""
 
 
 from enum import Enum

@@ -1,4 +1,4 @@
-"""Enumnumber file."""
+"""EnumNumber file."""
 
 
 from enum import IntEnum

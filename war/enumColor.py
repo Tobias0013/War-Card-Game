@@ -1,4 +1,4 @@
-"""Enumcolor file."""
+"""EnumColor file."""
 
 
 from enum import Enum

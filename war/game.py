@@ -82,13 +82,14 @@ class Game:
         try:
             with open(self._path, "rb") as file:
                 return pickle.load(file)
-        except FileNotFoundError:
+        except:
             return []
 
     def _save_high_score(self):
         """Save high scores to file."""
         if self._path == "":
             return
+
         with open(self._path, "wb") as file:
             pickle.dump(self.high_scores, file)
 
@@ -108,12 +109,12 @@ class Game:
                 self.player1.add_stack(self.player1.get_stack())
                 self.player1.add_stack(self.player2.get_stack())
                 print(
-                    f"{self.player1.name} has "+\
-                      f"{self.player1.len_hand()} cards left in their hand"
+                    f"{self.player1.name} has " +
+                    f"{self.player1.len_hand()} cards left in their hand"
                 )
                 print(
-                    f"{self.player2.name} has "+\
-                      f"{self.player2.len_hand()} cards left in their hand"
+                    f"{self.player2.name} has " +
+                    f"{self.player2.len_hand()} cards left in their hand"
                 )
                 self.round_counter += 1
             elif self.player2.get_card() > self.player1.get_card():
@@ -123,12 +124,12 @@ class Game:
                 self.player2.add_stack(self.player1.get_stack())
                 self.player2.add_stack(self.player2.get_stack())
                 print(
-                    f"{self.player1.name} has "+\
-                      f"{self.player1.len_hand()} cards left in ther hand"
+                    f"{self.player1.name} has " +
+                    f"{self.player1.len_hand()} cards left in there hand"
                 )
                 print(
-                    f"{self.player2.name} has "+\
-                      f"{self.player2.len_hand()} cards left in ther hand"
+                    f"{self.player2.name} has " +
+                    f"{self.player2.len_hand()} cards left in there hand"
                 )
                 self.round_counter += 1
             else:
@@ -140,12 +141,12 @@ class Game:
                 print(f"{self.player1.name} card: {self.player1.get_card()}")
                 print(f"{self.player2.name} card: {self.player2.get_card()}")
                 print(
-                    f"{self.player1.name} has "+\
-                    f"{self.player1.len_hand()} cards left in ther hand"
+                    f"{self.player1.name} has " +
+                    f"{self.player1.len_hand()} cards left in there hand"
                 )
                 print(
-                    f"{self.player2.name} has "+\
-                    f"{self.player2.len_hand()} cards left in ther hand"
+                    f"{self.player2.name} has " +
+                    f"{self.player2.len_hand()} cards left in there hand"
                 )
                 self.compare_cards()
 
