@@ -7,6 +7,7 @@ import unittest
 from unittest import mock
 from war import player
 
+
 class TestGameClass(unittest.TestCase):
     """Test the class."""
 
@@ -14,7 +15,7 @@ class TestGameClass(unittest.TestCase):
         """Instantiate an object and check its properties."""
         exp = player.Player("a", [1, 2, 3, 4], False)
         self.assertIsInstance(exp, player.Player)
-    
+
     def test_play_card(self):
         exp = player.Player("a", [1, 2, 3, 4], False)
         ref = [exp, exp, exp, exp]
@@ -24,7 +25,7 @@ class TestGameClass(unittest.TestCase):
         self.assertEqual(len(ref), len(ref))
 
     def test_clearing_hand_stack(self):
-        exp = player.Player("Eddie", [1,2,3], ['a', 'b', 'c'])
+        exp = player.Player("Eddie", [1, 2, 3], ["a", "b", "c"])
         ref = [exp, exp, exp, exp]
 
         ref[0].clear_hand()
@@ -37,7 +38,6 @@ class TestGameClass(unittest.TestCase):
         """Test change name functionality"""
         mocked_input.side_effect = ["Bertil"]
         ref = player.Player("Roger", [], True)
-        
+
         ref.change_name()
         self.assertEqual(ref.name, "Bertil")
-

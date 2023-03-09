@@ -10,9 +10,15 @@ Group 28. Cmd war card game.
 Get going
 --------------------------
 
-This is how you can work with the development environment.
+This is how you can work with the development environment. 
 
+### make shure PYTHONPATH is set
+Make shure that you have set the PYTHONPATH to the dir War-Card-Game
 
+```
+# In the root of the project
+export PYTHONPATH=.
+```
 
 ### Check version of Python
 
@@ -71,18 +77,18 @@ make installed
 The game can be started like this.
 
 ```
-# In directory War-
+# In directory War-Card-Game
 # Execute the main program
-python guess/main.py
+make start_game
 ```
 
-All code is stored below the directory `guess/`.
+All code is stored below the directory `war/`.
 
 
 
 ### Run the validators
 
-You can run the static code validators like this. They check the sourcecode and exclude the testcode.
+You can run the static code validators like this. They check the sourcecode and exclude the testcode. Run validators in dir War-Card-Game.
 
 ```
 # Run each at a time
@@ -93,18 +99,9 @@ make pylint
 make lint
 ```
 
-You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
-
-Read more on:
-
-* [flake8](https://flake8.pycqa.org/en/latest/)
-* [pylint](https://pylint.org/)
-
-
-
 ### Run the unittests
 
-You can run the unittests like this. The testfiles are stored in the `test/` directory.
+The testfiles are stored in the `test/` directory. Run test from dir War-Card-Game.
 
 ```
 # Run unttests without coverage
@@ -120,14 +117,8 @@ make test
 You can open a web browser to inspect the code coverage as a generated HTML report.
 
 ```
-firefox htmlcov/index.html
+start htmlcov/index.html
 ```
-
-Read more on:
-
-* [unittest](https://docs.python.org/3/library/unittest.html)
-* [coverage](https://coverage.readthedocs.io/)
-
 
 
 ### Run parts of the testsuite
@@ -164,11 +155,46 @@ make clean-all
 
 
 
-Optional targets
---------------------------
+### Run the automated documentation
 
-These targets might be helpful when running your project.
+The documentation is generated on both the war dir and test dir. The documents are generated in dir doc/pdoc.
 
+```
+# Generate documentation
+make pdoc
+```
+
+You can open a web browser to inspect the documentation as a generated HTML report.
+
+```
+# Too see doc on war
+start doc/pdoc/war/index.html
+
+# Too see doc on test
+start doc/pdoc/test/index.html
+```
+
+
+### Run the automated UML diagrams
+
+The UML diagrams is generated on both the war dir and test dir. The diagrams are generated in dir doc/pyreverse.
+
+```
+# Generate documentation
+make pyreverse
+```
+
+You can open a image viewer to inspect the UML diagrams as a generated .png files.
+
+```
+# Too see doc on war
+start doc/pyreverse/war/classes.png
+start doc/pyreverse/war/packages.png
+
+# Too see doc on test
+start doc/pyreverse/test/classes.png
+start doc/pyreverse/test/packages.png
+```
 
 
 ### Codestyle with black
@@ -180,8 +206,6 @@ You can unify the codestyle using black. Running black will change your source c
 make black
 make codestyle
 ```
-
-Read more on [black](https://pypi.org/project/black/).
 
 
 

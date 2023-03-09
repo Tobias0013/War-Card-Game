@@ -62,11 +62,11 @@ clean-all: clean clean-doc
 #
 pylint:
 	@$(call MESSAGE,$@)
-	-cd game && $(PYTHON) -m pylint *.py
+	-cd war && $(PYTHON) -m pylint *.py
 
 flake8:
 	@$(call MESSAGE,$@)
-	-flake8
+	-flake8 war
 
 lint: flake8 pylint
 
@@ -76,7 +76,7 @@ lint: flake8 pylint
 #
 black:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m black game/ test/
+	 $(PYTHON) -m black war/ test/
 
 codestyle: black
 
@@ -86,7 +86,7 @@ codestyle: black
 #
 unittest:
 	@$(call MESSAGE,$@)
-	 $(PYTHON) -m unittest  -b
+	 $(PYTHON) -m unittest -b
 
 coverage:
 	@$(call MESSAGE,$@)

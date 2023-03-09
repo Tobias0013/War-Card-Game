@@ -1,6 +1,7 @@
-""" This is our Shell class, looping the game along with game logic
+"""
+This is our Shell class. Used to looping the game along with game logic.
 
-Start by implementing modules needed
+Start by implementing modules needed.
 
     class Shell(cmd.Cmd)
 
@@ -18,7 +19,7 @@ Then start the game.
         def do_start(self, _):
 
 If it is player1's turn. Then play one of ther card to stack.
-    If player2 is not a player then run do_play again automaticly.
+If player2 is not a player then run do_play again automaticly.
 Else player2's turn. Then play one of ther card to stack.
 
 Then run self.game.compare_cards()
@@ -28,7 +29,6 @@ If self.game.end() is true then change prompt to ">> "
         def do_start(self, _):
 
 """
-
 import cmd
 from time import sleep
 from war import game
@@ -47,31 +47,32 @@ class Shell(cmd.Cmd):
 
     def do_start(self, _):
         """Start a game."""
-
-        choice = input('Please input the number of the desired mode'
-                       '\n1) Versus Computer\n2) Versus Player\n>> ')
+        choice = input(
+            "Please input the number of the desired mode"
+            "\n1) Versus Computer\n2) Versus Player\n>> "
+        )
 
         while True:
             if choice.isdigit():
                 choice = int(choice)
                 if choice in (1, 2):
                     break
-            choice = input('Please input either 1 or 2 from the menu')
+            choice = input("Please input either 1 or 2 from the menu")
 
         is_player = False
         if choice == 2:
             is_player = True
 
-        name1 = input('Player 1, what is your name?\n>> ')
+        name1 = input("Player 1, what is your name?\n>> ")
         if choice == 2:
-            name2 = input('Player 2, what is your name?\n>> ')
+            name2 = input("Player 2, what is your name?\n>> ")
         else:
             name2 = "Computer"
         self.game.start(name1, name2, is_player)
         self.prompt = f"({self.game.player1.name}) "
 
     def do_name_change(self, _):
-        """Changes current player name."""
+        """Change current player name."""
         if self.prompt == ">> ":
             print("The game has not yet started.\nInput start to start game.")
             return
@@ -85,14 +86,18 @@ class Shell(cmd.Cmd):
             self.prompt = f"({self.game.player2.name}) "
 
     def do_play(self, _):
-        """Player plays card from hand, start war if both player played a card."""
+        """Player plays card from hand, \
+            start war if both player played a card."""
         if self.prompt == ">> ":
             print("The game has not yet started.\nInput start to start game.")
             return
 
         if self.prompt == f"({self.game.player1.name}) ":
             self.game.player1.play_card()
-            print(f"Card added to {self.game.player1.name} floorloor>> {self.game.player1.get_card()}")
+            print(
+                f"Card added to {self.game.player1.name}'s "+\
+                f"floor>> {self.game.player1.get_card()}"
+            )
             self.prompt = f"({self.game.player2.name}) "
 
             if not self.game.player2.is_player:
@@ -100,13 +105,22 @@ class Shell(cmd.Cmd):
                 self.do_play("")
         else:
             self.game.player2.play_card()
-            print(f"Card added to {self.game.player2.name} flouir>> {self.game.player2.get_card()}")
+            print(
+                f"Card added to {self.game.player2.name}'s "+\
+                f"floor>> {self.game.player2.get_card()}"
+            )
             self.prompt = f"({self.game.player1.name}) "
 
         self.game.compare_cards()
 
         if self.game.end():
             self.prompt = ">> "
+
+    def do_restart(self, _):
+        """Restart game."""
+        print("Restarting game....\n\n")
+        self.game = game.Game()
+        self.do_start("")
 
     def do_cheat(self, _):
         """Cheat, riggs war so that player 1 will win."""

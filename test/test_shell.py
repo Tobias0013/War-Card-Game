@@ -43,22 +43,21 @@ class TestGameClass(unittest.TestCase):
     def test_play(self, mocked_input):
         """Test play a card."""
         mocked_input.side_effect = ["2", "Roger", "Malin"]
-        
+
         shel = shell.Shell()
         shel.do_start("")
-        
+
         shel.do_play("")
         self.assertTrue(shel.game.player1.len_stack() == 1)
         res = shel.prompt == f"({shel.game.player2.name}) "
         self.assertTrue(res)
         shel.game.player1.clear_stack()
-                
+
         shel.do_play("")
         self.assertTrue(shel.game.player2.len_stack() == 1)
         res = shel.prompt == f"({shel.game.player1.name}) "
         self.assertTrue(res)
-        
-        
+
+
 if __name__ == "__main__":
     unittest.main()
-    
