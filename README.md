@@ -5,6 +5,54 @@ Group 28. Cmd war card game.
 
 Group 28. Cmd war card game.
 
+Software Requirement
+--------------------------
+This is the software you need to work with the development environment (For windows).
+
+
+
+### Choco
+This is how you install choco packet manager. This is a packet manager for windows.
+
+Read more on [Install the Windows packet manager Chocolatey](https://chocolatey.org/install).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Check if installed correctly
+choco
+```
+
+### Make
+This is how you install GNU make. This is to run game, test, documentation and UML diagrams simpler.
+
+Read more on [Install GNU make](https://community.chocolatey.org/packages/make).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+choco install make
+
+# Check if installed correctly
+make --version
+```
+
+### Dot
+This is how you install Graphviz (dot command).
+
+Read more on [Graphviz project](https://graphviz.org/).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+choco install graphviz
+
+# Check if installed correctly
+dot -V
+```
+
+
+
+
 
 
 Get going
@@ -141,27 +189,13 @@ python -m unittest test.test_game.TestGameClass.test_init_default_object
 
 
 
-### Remove generated files
+### Run all the automated documentation and UML diagrams
 
-You can remove all generated files by this.
-
-```
-# Remove files generated for tests or caching
-make clean
-
-# Do also remove all you have installed
-make clean-all
-```
-
-
-
-### Run the automated documentation
-
-The documentation is generated on both the war dir and test dir. The documents are generated in dir doc/pdoc.
+You can generate all the documentation and UML diagrams directly.
 
 ```
 # Generate documentation
-make pdoc
+make doc
 ```
 
 You can open a web browser to inspect the documentation as a generated HTML report.
@@ -175,6 +209,30 @@ start doc/pdoc/test/index.html
 ```
 
 
+You can open an image viewer to inspect the UML diagrams as a generated .png files.
+
+```
+# Too see UML diagrams on war
+start doc/pyreverse/war/classes.png
+start doc/pyreverse/war/packages.png
+
+# Too see UML diagrams on test
+start doc/pyreverse/test/classes.png
+start doc/pyreverse/test/packages.png
+```
+
+
+
+### Run the automated documentation
+
+The documentation is generated on both the war dir and test dir. The documents are generated in dir doc/pdoc.
+
+```
+# Generate documentation
+make pdoc
+```
+
+
 ### Run the automated UML diagrams
 
 The UML diagrams is generated on both the war dir and test dir. The diagrams are generated in dir doc/pyreverse.
@@ -184,27 +242,20 @@ The UML diagrams is generated on both the war dir and test dir. The diagrams are
 make pyreverse
 ```
 
-You can open a image viewer to inspect the UML diagrams as a generated .png files.
+
+### Remove generated files
+
+You can remove all generated files by this.
 
 ```
-# Too see doc on war
-start doc/pyreverse/war/classes.png
-start doc/pyreverse/war/packages.png
+# Remove files generated for tests or caching
+make clean
 
-# Too see doc on test
-start doc/pyreverse/test/classes.png
-start doc/pyreverse/test/packages.png
-```
+# Remove files generated for documentation and UML diagrams
+make clean-doc
 
-
-### Codestyle with black
-
-You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
-
-```
-# Same same, different names
-make black
-make codestyle
+# Do also remove all you have installed
+make clean-all
 ```
 
 
