@@ -161,3 +161,7 @@ class Shell(cmd.Cmd):
         # pylint: disable=invalid-name
         """Leave the war."""
         return self.do_exit(_)
+
+    def default(self, line):
+        """Default unknown syntax message"""
+        print(f"*** Unknown command: {line}\nType help or ? to list commands\n")
