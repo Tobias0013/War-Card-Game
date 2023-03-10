@@ -126,6 +126,10 @@ class Shell(cmd.Cmd):
 
     def do_cheat(self, _):
         """Cheat, riggs war so that player 1 will win."""
+        if self.prompt == ">> ":
+            print("The game has not yet started.\nInput start to start game.")
+            return
+        
         self.game.cheat()
 
     def do_high_score(self, _):

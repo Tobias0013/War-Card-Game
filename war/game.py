@@ -57,15 +57,21 @@ class Game:
 
         if self.player1.stack_empty() and self.player2.stack_empty():
             if self.player1.hand_empty():
-                print(f"{self.player2.name} won")
+                self._print_win_line(self.player2.name)
                 end = True
                 self._create_high_score(self.player2, self.player1)
             elif self.player2.hand_empty():
-                print(f"{self.player1.name} won")
+                self._print_win_line(self.player1.name)
                 end = True
                 self._create_high_score(self.player1, self.player2)
-
         return end
+
+    def _print_win_line(self, player_name):
+        """Format display for game winner"""
+        name_len = len(player_name)
+        print("-" * (15 + name_len))
+        print(f"===< {self.player1.name} won! >===")
+        print("-" * (15 + name_len))
 
     def _create_high_score(self, winner, loser):
         """Create high score."""
