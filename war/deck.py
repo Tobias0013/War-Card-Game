@@ -1,9 +1,12 @@
+"""Deck file."""
+
 import random
 from war import card
 
 
 class Deck:
     """Deck class."""
+
     def __init__(self):
         """Deck constructor."""
         self.cards = []
@@ -11,7 +14,7 @@ class Deck:
         random.shuffle(self.cards)
 
     def _generate_cards(self):
-        """Generates 52 card."""
+        """Generate 52 card."""
         i = 2
         j = 0
 
@@ -24,8 +27,8 @@ class Deck:
 
     def give_hands(self, hand1, hand2):
         """Give 26 cards to each argument (hand1=list, hand2=list)."""
-        for i, card in enumerate(self.cards):
+        for i, obj in enumerate(self.cards):
             if i % 2 == 0:
-                hand1.append(card)
+                hand1.append(obj)
             else:
-                hand2.append(card)
+                hand2.append(obj)

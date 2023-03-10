@@ -110,19 +110,23 @@ class TestGameClass(unittest.TestCase):
         the_game.high_scores.clear()
         p1 = player.Player("p1", [], True)
         p2 = player.Player("p2", [], True)
-        high_scores = [high_score.High_score(10, p1, p2),
-                       high_score.High_score(20, p1, p2),
-                       high_score.High_score(5, p1, p2),
-                       high_score.High_score(3, p1, p2),
-                       high_score.High_score(7, p1, p2),
-                       high_score.High_score(1, p1, p2)]
+        high_scores = [
+            high_score.High_score(10, p1, p2),
+            high_score.High_score(20, p1, p2),
+            high_score.High_score(5, p1, p2),
+            high_score.High_score(3, p1, p2),
+            high_score.High_score(7, p1, p2),
+            high_score.High_score(1, p1, p2),
+        ]
         the_game.high_scores = high_scores
         the_game._compare_high_scores()
-        high_scores = [high_score.High_score(1, p1, p2),
-                       high_score.High_score(3, p1, p2),
-                       high_score.High_score(5, p1, p2),
-                       high_score.High_score(7, p1, p2),
-                       high_score.High_score(10, p1, p2)]
+        high_scores = [
+            high_score.High_score(1, p1, p2),
+            high_score.High_score(3, p1, p2),
+            high_score.High_score(5, p1, p2),
+            high_score.High_score(7, p1, p2),
+            high_score.High_score(10, p1, p2),
+        ]
         res = the_game.high_scores == high_scores
         self.assertTrue(res)
 
@@ -156,8 +160,7 @@ class TestGameClass(unittest.TestCase):
         the_game.player1 = player.Player("p1", [], True)
         the_game.player2 = player.Player("p2", [], True)
         the_game.cheat()
-        res = the_game.player1.len_hand() == 1 \
-              and the_game.player2.len_hand() == 1
+        res = the_game.player1.len_hand() == 1 and the_game.player2.len_hand() == 1
         self.assertTrue(res)
 
         res = the_game.player1.hand[0].get_value() == 14

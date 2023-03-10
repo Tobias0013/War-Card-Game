@@ -1,5 +1,9 @@
+"""Player file."""
+
+
 class Player:
     """Player class."""
+
     def __init__(self, name, cards, is_player):
         """Player constructor."""
         self.is_player = is_player
@@ -38,15 +42,15 @@ class Player:
         return len(self.hand) == 0
 
     def clear_stack(self):
-        """Clears stack."""
+        """Clear stack."""
         self.stack.clear()
 
     def clear_hand(self):
-        """Clears hand."""
+        """Clear hand."""
         self.hand.clear()
 
     def change_name(self):
-        """Changes name of player."""
+        """Change name of player."""
         self.name = input("What is your new name? >> ")
 
     def len_stack(self):

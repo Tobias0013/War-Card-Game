@@ -5,14 +5,68 @@ Group 28. Cmd war card game.
 
 Group 28. Cmd war card game.
 
+Software Requirement
+--------------------------
+This is the software you need to work with the development environment (For windows).
+
+
+
+### Choco
+This is how you install choco packet manager. This is a packet manager for windows.
+
+Read more on [Install the Windows packet manager Chocolatey](https://chocolatey.org/install).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+# Check if installed correctly
+choco
+```
+
+### Make
+This is how you install GNU make. This is to run game, test, documentation and UML diagrams simpler.
+
+Read more on [Install GNU make](https://community.chocolatey.org/packages/make).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+choco install make
+
+# Check if installed correctly
+make --version
+```
+
+### Dot
+This is how you install Graphviz (dot command).
+
+Read more on [Graphviz project](https://graphviz.org/).
+
+```
+# In the windows powerShell (make sure you have administrative privilege)
+choco install graphviz
+
+# Check if installed correctly
+dot -V
+```
+
+
+
+
 
 
 Get going
 --------------------------
 
-This is how you can work with the development environment.
+This is how you can work with the development environment. 
 
+### make shure PYTHONPATH is set
+Make shure that you have set the PYTHONPATH to the dir War-Card-Game
 
+```
+# In the root of the project
+export PYTHONPATH=.
+```
 
 ### Check version of Python
 
@@ -71,18 +125,18 @@ make installed
 The game can be started like this.
 
 ```
-# In directory War-
+# In directory War-Card-Game
 # Execute the main program
-python guess/main.py
+make start_game
 ```
 
-All code is stored below the directory `guess/`.
+All code is stored below the directory `war/`.
 
 
 
 ### Run the validators
 
-You can run the static code validators like this. They check the sourcecode and exclude the testcode.
+You can run the static code validators like this. They check the sourcecode and exclude the testcode. Run validators in dir War-Card-Game.
 
 ```
 # Run each at a time
@@ -93,18 +147,9 @@ make pylint
 make lint
 ```
 
-You might need to update the Makefile if you change the name of the source directory currently named `guess/`.
-
-Read more on:
-
-* [flake8](https://flake8.pycqa.org/en/latest/)
-* [pylint](https://pylint.org/)
-
-
-
 ### Run the unittests
 
-You can run the unittests like this. The testfiles are stored in the `test/` directory.
+The testfiles are stored in the `test/` directory. Run test from dir War-Card-Game.
 
 ```
 # Run unttests without coverage
@@ -120,14 +165,8 @@ make test
 You can open a web browser to inspect the code coverage as a generated HTML report.
 
 ```
-firefox htmlcov/index.html
+start htmlcov/index.html
 ```
-
-Read more on:
-
-* [unittest](https://docs.python.org/3/library/unittest.html)
-* [coverage](https://coverage.readthedocs.io/)
-
 
 
 ### Run parts of the testsuite
@@ -150,6 +189,60 @@ python -m unittest test.test_game.TestGameClass.test_init_default_object
 
 
 
+### Run all the automated documentation and UML diagrams
+
+You can generate all the documentation and UML diagrams directly.
+
+```
+# Generate documentation
+make doc
+```
+
+You can open a web browser to inspect the documentation as a generated HTML report.
+
+```
+# Too see doc on war
+start doc/pdoc/war/index.html
+
+# Too see doc on test
+start doc/pdoc/test/index.html
+```
+
+
+You can open an image viewer to inspect the UML diagrams as a generated .png files.
+
+```
+# Too see UML diagrams on war
+start doc/pyreverse/war/classes.png
+start doc/pyreverse/war/packages.png
+
+# Too see UML diagrams on test
+start doc/pyreverse/test/classes.png
+start doc/pyreverse/test/packages.png
+```
+
+
+
+### Run the automated documentation
+
+The documentation is generated on both the war dir and test dir. The documents are generated in dir doc/pdoc.
+
+```
+# Generate documentation
+make pdoc
+```
+
+
+### Run the automated UML diagrams
+
+The UML diagrams is generated on both the war dir and test dir. The diagrams are generated in dir doc/pyreverse.
+
+```
+# Generate documentation
+make pyreverse
+```
+
+
 ### Remove generated files
 
 You can remove all generated files by this.
@@ -158,30 +251,12 @@ You can remove all generated files by this.
 # Remove files generated for tests or caching
 make clean
 
+# Remove files generated for documentation and UML diagrams
+make clean-doc
+
 # Do also remove all you have installed
 make clean-all
 ```
-
-
-
-Optional targets
---------------------------
-
-These targets might be helpful when running your project.
-
-
-
-### Codestyle with black
-
-You can unify the codestyle using black. Running black will change your source code to have a codestyle according to black codestyle.
-
-```
-# Same same, different names
-make black
-make codestyle
-```
-
-Read more on [black](https://pypi.org/project/black/).
 
 
 

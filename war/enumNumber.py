@@ -1,8 +1,12 @@
+"""EnumNumber file."""
+
+
 from enum import IntEnum
 
 
 class number(IntEnum):
     """Enum for card number."""
+
     ACE = 14
     KING = 13
     QUEEN = 12

@@ -1,3 +1,5 @@
+"""Card file."""
+
 from war.enumNumber import number
 from war.enumColor import Color
 from war.enumSute import Sute
@@ -5,6 +7,7 @@ from war.enumSute import Sute
 
 class Card:
     """Card class."""
+
     def __init__(self, nmr, suite):
         """Card constructor."""
         self.number = number(nmr)
@@ -15,9 +18,10 @@ class Card:
         self.suite = Sute(suite)
 
     def get_value(self):
-        """Gets the card value."""
+        """Get the card value."""
         return self.number.value
 
     def __str__(self):
         """Return card as string."""
-        return f"number={self.number.value},suite={self.suite},color={self.color}"
+        return f"number={self.number.value}," + \
+            f"suite={self.suite},color={self.color}"
